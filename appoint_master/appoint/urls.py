@@ -10,7 +10,7 @@ urlpatterns = [
     path("__reload__/", include("django_browser_reload.urls")),
     path('admin/', admin.site.urls),
     path("", include('appoint_app.urls')),
-    path("ML/", include('ML.urls')),
+    # path("ML/", include('ML.urls')),
     path("account/", include('account.urls')),
     path('secure-appoint-pay/', include('payments.urls')),
     

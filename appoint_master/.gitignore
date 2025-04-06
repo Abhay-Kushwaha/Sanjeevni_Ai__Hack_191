@@ -21,3 +21,4 @@ ML/models/
 *.model
 
 appoint_master/ML/models/alzheimer-model.h5
+db.sqlite3
