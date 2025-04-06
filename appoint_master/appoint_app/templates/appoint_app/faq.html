@@ -1,0 +1,499 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Innovation Portal</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- AOS CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="../static/style.css" rel="stylesheet">
+    <style>
+         html, body {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+        font-family: 'Poppins', sans-serif;
+        background-color: #C9E6F0;
+    }
+    
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px;
+    }
+    
+    /* Navbar Styles */
+    .navbar {
+        background-color: #006073;
+        box-shadow: 0 4px 6px rgba(234, 231, 231, 0.1);
+        margin-bottom: 10px;
+    }
+    
+    .navbar-brand {
+        color: #efebeb;
+        font-weight: bold;
+    }
+    
+    .navbar-brand img {
+        height: 50px;
+        width: 180px;
+    }
+    
+    .navbar-nav .nav-link {
+        color: #f2eeee;
+        margin-right: 15px;
+        font-weight: 600;
+        font-size: 14px;
+    }
+    
+    .navbar-nav .nav-link:hover,
+    .navbar-nav .nav-link.active {
+        color: #fbfdff;
+        text-decoration: underline;
+    }
+    
+        /* Additional inline styles for centering */
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 2rem 0;
+        }
+        
+        .help-container {
+            margin: 0 auto;
+            width: 90%;
+            max-width: 800px;
+        }
+
+
+
+        /* Chatbot Styles */
+.chatbot-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #085777;
+    color: white;
+    font-size: 24px;
+    border-radius: 50%;
+    padding: 15px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s;
+}
+
+.chatbot-icon:hover {
+    background-color: #06010c;
+}
+
+.chatbot-popup {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    background: white;
+    color: #333;
+    width: 350px;
+    height: 400px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    display: none;
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+.chatbot-header {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.chatbot-message {
+    background-color: #f1f1f1;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.chatbot-message.bot {
+    background-color: #085777;
+    color: white;
+}
+
+.chatbot-message.user {
+    background-color: #C9E6F0;
+    color: #333;
+    text-align: right;
+}
+
+.chat-input-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.chat-input {
+    width: 80%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+.chat-send-btn {
+    width: 19%;
+    background-color: #085777;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.chat-send-btn:hover {
+    background-color: #06010c;
+}
+
+/* Help Page Styles */
+.help-container {
+    background: #fff;
+    width: 90%;
+    max-width: 800px;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    text-align: left;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.help-container h1 {
+    font-size: 32px;
+    color: #0a0602aa;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.faq-section {
+    margin-bottom: 20px;
+}
+
+.faq-question {
+    background-color: #085777;
+    color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+    border: none;
+    width: 100%;
+    text-align: left;
+    font-size: 18px;
+}
+
+.faq-question:hover {
+    background-color: #06010c;
+}
+
+.faq-answer {
+    background-color: #f9f9f9;
+    color: #333;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 10px;
+    display: none;
+    font-size: 16px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero {
+        padding: 13px 20px;
+        flex-direction: column;
+    }
+
+    .hero-img {
+        max-width: 100%;
+        margin-bottom: 40px;
+        margin-left: 0;
+    }
+
+    .hero-content {
+        max-width: 100%;
+        text-align: center;
+    }
+
+    .chatbot-popup {
+        width: 300px;
+        height: 350px;
+    }
+
+    .chatbot-header {
+        font-size: 16px;
+    }
+
+    .chat-input {
+        font-size: 14px;
+    }
+
+    .help-container {
+        padding: 20px;
+    }
+
+    .help-container h1 {
+        font-size: 28px;
+    }
+
+    .faq-question {
+        font-size: 16px;
+        padding: 12px;
+    }
+
+    .faq-answer {
+        font-size: 14px;
+    }
+}
+
+.navbar-brand img {
+        height: 50px;
+        width: 180px;
+    }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    
+    <nav class="navbar navbar-expand-lg">
+        <div class="container" data-aos="slide-right">
+            <a class="navbar-brand" href="#"><img src="{% static 'appoint_app/images/appoint-master-logo.png' %}" alt="Logo"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- FAQ Container -->
+        <div class="help-container" data-aos="flip-up">
+            <h1 class="text-center mb-4">Help & Frequently Asked Questions – Sanjeevni AI</h1>
+
+            <!-- FAQ 1 -->
+            <div class="faq-section">
+                <button class="faq-question" onclick="toggleAnswer(1)">
+                    What healthcare services does Sanjeevni AI offer?
+                </button>
+                <div class="faq-answer" id="answer-1">
+                    Sanjeevni AI offers AI-powered healthcare assistance with multilingual support. It helps patients detect and predict diseases, suggests medicines, medical tests, and precautions, and generates detailed health reports via email.
+                </div>
+            </div>
+
+            <!-- FAQ 2 -->
+            <div class="faq-section">
+                <button class="faq-question" onclick="toggleAnswer(2)">
+                    What if I'm not satisfied with the AI's suggestions?
+                </button>
+                <div class="faq-answer" id="answer-2">
+                    If you're not satisfied with the AI recommendations, you can search for doctors and consult them directly via chat or video call. The platform also facilitates treatment planning and secure fee payments.
+                </div>
+            </div>
+
+            <!-- FAQ 3 -->
+            <div class="faq-section">
+                <button class="faq-question" onclick="toggleAnswer(3)">
+                    Can I order medicines through Sanjeevni AI?
+                </button>
+                <div class="faq-answer" id="answer-3">
+                    Yes, you can search for and order prescribed medicines through the platform, ensuring convenient doorstep delivery.
+                </div>
+            </div>
+
+            <!-- FAQ 4 -->
+            <div class="faq-section">
+                <button class="faq-question" onclick="toggleAnswer(4)">
+                    How do I schedule a doctor's appointment?
+                </button>
+                <div class="faq-answer" id="answer-4">
+                    You can schedule appointments directly on the platform after selecting your preferred doctor and available time slots. Reminders and confirmations will be sent via email or SMS.
+                </div>
+            </div>
+
+            <!-- FAQ 5 -->
+            <div class="faq-section">
+                <button class="faq-question" onclick="toggleAnswer(5)">
+                    What is the Smart Health Repository?
+                </button>
+                <div class="faq-answer" id="answer-5">
+                    The Smart Health Repository includes the Disease Awareness Hub, Health News & Research Updates, and curated content on nutrition, yoga, exercise, and meditation to support a balanced and healthy lifestyle.
+                </div>
+            </div>
+
+            <!-- FAQ 6 -->
+            <div class="faq-section">
+                <button class="faq-question" onclick="toggleAnswer(6)">
+                    Can I receive my health reports via email?
+                </button>
+                <div class="faq-answer" id="answer-6">
+                    Yes! Sanjeevni AI sends detailed health analysis and reports to your registered email address after the consultation or diagnostic suggestion process.
+                </div>
+            </div>
+
+            <!-- FAQ 7 -->
+            <div class="faq-section">
+                <button class="faq-question" onclick="toggleAnswer(7)">
+                    Is multilingual support available for consultations?
+                </button>
+                <div class="faq-answer" id="answer-7">
+                    Absolutely. Sanjeevni AI supports multiple Indian languages, enabling patients from diverse regions to interact with the system comfortably in their preferred language.
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Chatbot Icon -->
+    <div class="chatbot-icon" onclick="toggleChatbot()">💬</div>
+
+    <!-- Chatbot Popup -->
+    <div class="chatbot-popup" id="chatbot-popup">
+        <div class="chatbot-header">Welcome to Sanjeevani AI</div>
+        <div id="chatbot-messages" style="height: 280px; overflow-y: auto;">
+            <div class="chatbot-message bot">👋 Hello! I'm Sanjeevani AI, your healthcare assistant. How can I help you today?</div>
+            <div class="chatbot-options" id="chatbot-options"></div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            once: false,
+            duration: 1000,
+            easing: 'ease-in-out',
+        });
+
+        // FAQ Toggle Function
+        function toggleAnswer(id) {
+            const answer = document.getElementById(`answer-${id}`);
+            answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+        }
+
+        // Chatbot Functions
+        const optionsMap = {
+            start: [
+                { label: "🧠 Predict Disease", value: "predict" },
+                { label: "💊 Medicine & Precautions", value: "meds" },
+                { label: "📧 Get Report via Email", value: "report" },
+                { label: "👨‍⚕️ Consult a Doctor", value: "consult" },
+                { label: "📦 Order Medicines", value: "order" },
+                { label: "🗓️ Schedule Appointment", value: "appointment" },
+                { label: "🧾 Smart Health Repository", value: "repository" }
+            ],
+            consult: [
+                { label: "💬 Chat with Doctor", value: "chat" },
+                { label: "📹 Video Consultation", value: "video" },
+                { label: "💳 Pay Consultation Fees", value: "fees" },
+                { label: "⬅️ Back", value: "start" }
+            ],
+            repository: [
+                { label: "🧬 Disease Awareness Hub", value: "disease_hub" },
+                { label: "📰 Health News & Research", value: "news" },
+                { label: "🥗 Nutrition & Diet", value: "nutrition" },
+                { label: "🧘 Yoga & Meditation", value: "yoga" },
+                { label: "🏋️ Exercise Guide", value: "exercise" },
+                { label: "⬅️ Back", value: "start" }
+            ]
+        };
+
+        const responses = {
+            predict: "🧠 Please proceed to our AI diagnostic tool to input your symptoms.",
+            meds: "💊 Based on your condition, we suggest medicines and precautions. Please refer to your dashboard.",
+            report: "📧 Your health report will be emailed shortly. Please ensure your email is verified.",
+            chat: "💬 You will be connected to an available doctor shortly via chat.",
+            video: "📹 Opening secure video consultation window...",
+            fees: "💳 Redirecting you to secure payment gateway for consultation.",
+            order: "📦 You can now search and order medicines through our pharmacy panel.",
+            appointment: "🗓️ Choose a convenient date and time to schedule your appointment.",
+            disease_hub: "🧬 Explore awareness content about various diseases.",
+            news: "📰 Get the latest health research and news updates.",
+            nutrition: "🥗 Learn about balanced diets and nutrition guides.",
+            yoga: "🧘 Access yoga and meditation routines for mental wellness.",
+            exercise: "🏋️ Check out fitness routines and home exercises.",
+        };
+
+        function toggleChatbot() {
+            const chatbotPopup = document.getElementById("chatbot-popup");
+            chatbotPopup.style.display = chatbotPopup.style.display === "block" ? "none" : "block";
+            if (chatbotPopup.style.display === "block") {
+                showOptions("start");
+            }
+        }
+
+        function showOptions(category) {
+            const optionsDiv = document.getElementById("chatbot-options");
+            optionsDiv.innerHTML = "";
+            optionsMap[category]?.forEach(opt => {
+                const btn = document.createElement("button");
+                btn.classList.add("chatbot-option-btn");
+                btn.textContent = opt.label;
+                btn.onclick = () => handleOptionClick(opt.value);
+                optionsDiv.appendChild(btn);
+            });
+        }
+
+        function handleOptionClick(value) {
+            const messages = document.getElementById("chatbot-messages");
+
+            function scrollToBottom() {
+                messages.scrollTop = messages.scrollHeight;
+            }
+
+            const userMsg = document.createElement("div");
+            userMsg.classList.add("chatbot-message", "user");
+            userMsg.textContent = Object.values(optionsMap).flat().find(o => o.value === value)?.label || value;
+            messages.appendChild(userMsg);
+
+            const botMsg = document.createElement("div");
+            botMsg.classList.add("chatbot-message", "bot");
+            botMsg.textContent = responses[value] || "🤖 I'm still learning how to respond to that!";
+            messages.appendChild(botMsg);
+
+            if (optionsMap[value]) {
+                showOptions(value);
+            } else {
+                showOptions("start");
+            }
+
+            scrollToBottom();
+        }
+    </script>
+</body>
+</html>

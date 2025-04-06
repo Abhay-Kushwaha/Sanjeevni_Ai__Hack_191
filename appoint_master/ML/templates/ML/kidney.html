@@ -1,0 +1,135 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Kidney Disease Prediction</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(-202deg, #eff9fb 0%, #d5e2ef 15%, #e5e8eb 46%, #F3FFFD 72%, #B6CDCF 81%, #025484 100%);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        .navbar-brand img {
+            height: 60px;
+            width: 55px;
+        }
+
+        .container-heading {
+            margin-top: 30px;
+            font-weight: 700;
+            color: #0e1010;
+            text-align: center;
+        }
+
+        .ml-container {
+            background-color: #ffffffcc;
+            border-radius: 20px;
+            padding: 30px;
+            margin: 40px auto;
+            max-width: 600px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-control {
+            margin-bottom: 15px;
+            border-radius: 10px;
+        }
+
+        button[type="submit"] {
+            background-color: #006073;
+            border: none;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: background 0.3s ease;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #004d5c;
+        }
+
+        label {
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #006073;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="{% static 'ML/logo.png' %}" alt="Logo">
+            </a>
+            <div class="d-flex ms-auto">
+                <ul class="navbar-nav d-flex flex-row">
+                    <li class="nav-item mx-2">
+                        <a class="nav-link" href='{% url "login" %}'>Dashboard</a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link" href='{% url "all_cards" %}'>All Diseases</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2 class="container-heading"><span class="heading_font">Kidney Disease Prediction</span></h2>
+    </div>
+
+    <div class="ml-container">
+        <form action="{% url 'kidney' %}" method="POST">
+            <label for="first">Specific Gravity</label>
+            <input type="number" id="first" name="sg" class="form-control" placeholder="Ex: (1.005,1.010,1.015,1.020,1.025)" required>
+
+            <label for="second">Hyper Tension</label>
+            <input type="number" id="second" name="htn" class="form-control" placeholder="Yes = 1, No = 0" required>
+
+            <label for="third">Hemoglobin</label>
+            <input type="number" id="third" name="hemo" class="form-control" placeholder="in gms" required>
+
+            <label for="fourth">Diabetes Mellitus</label>
+            <input type="number" id="fourth" name="dm" class="form-control" placeholder="Yes = 1, No = 0" required>
+
+            <label for="fifth">Albumin</label>
+            <input type="number" id="fifth" name="al" class="form-control" placeholder="(0,1,2,3,4,5)" required>
+
+            <label for="sixth">Appetite</label>
+            <input type="number" id="sixth" name="appet" class="form-control" placeholder="Good = 1, Poor = 0" required>
+
+            <label for="seventh">Red Blood Cell Count</label>
+            <input type="number" id="seventh" name="rc" class="form-control" placeholder="in Millions/cmm" required>
+
+            <label for="eight">Pus Cell</label>
+            <input type="number" id="eight" name="pc" class="form-control" placeholder="Normal = 0, Abnormal = 1" required>
+
+            <button type="submit" class="mt-3">Submit</button>
+        </form>
+
+        {% if prediction_result %}
+        <p class="mt-3"><strong>Prediction:</strong> {{ prediction_result }}</p>
+        {% endif %}
+
+        {% if error %}
+        <p style="color: red;" class="mt-3">Error: {{ error }}</p>
+        {% endif %}
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*.sqlite3
+
+# Virtual environment
+vir_all_env/
+
+# Environment variables
+.env
+
+venv/
+__pycache__/
+.vscode/
+node_modules/
+
+
+SS_web_app/vir_all_env/
+SS_web_app/venv/
+
+appoint_master/appoint/.env/
+.env/
+vir_all_env/
+venv/
+
+appoint_master/ML/models/
+models/
+*.h5
+*.pkl
+*.model
+
+appoint_master/ML/models/alzheimer-model.h5

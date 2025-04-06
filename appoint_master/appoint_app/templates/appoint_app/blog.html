@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Yog - Your Wellness Journey</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #c9e6f0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .hero-bg {
+            background-color: #c9e6f0;
+        }
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        .nav-link:hover {
+            color: #2b6cb0;
+        }
+        .icon-box {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between">
+                <div class="flex space-x-7">
+                    <!-- Logo -->
+                    <div>
+                        <a href="{% url 'home' %}" class="flex items-center py-4 px-2">
+                            <span class="font-semibold text-2xl text-blue-800">Health Yog</span>
+                        </a>
+                    </div>
+                    <!-- Primary Nav -->
+                    <div class="hidden md:flex items-center space-x-1">
+                        <a href="#healthy-food" class="nav-link py-4 px-2 text-gray-500 font-semibold hover:text-blue-800 transition duration-300">Healthy Food</a>
+                        <a href="#yoga" class="nav-link py-4 px-2 text-gray-500 font-semibold hover:text-blue-800 transition duration-300">Yoga</a>
+                        <a href="#meditation" class="nav-link py-4 px-2 text-gray-500 font-semibold hover:text-blue-800 transition duration-300">Meditation</a>
+                        <a href="#exercise" class="nav-link py-4 px-2 text-gray-500 font-semibold hover:text-blue-800 transition duration-300">Exercise</a>
+                        <a href="#lifestyle" class="nav-link py-4 px-2 text-gray-500 font-semibold hover:text-blue-800 transition duration-300">Lifestyle</a>
+                    </div>
+                </div>
+                <!-- Secondary Nav -->
+                <div class="hidden md:flex items-center space-x-3">
+                    <a href="#" class="py-2 px-2 font-medium text-white bg-blue-500 rounded hover:bg-blue-400 transition duration-300">Sign Up</a>
+                    <a href="#" class="py-2 px-2 font-medium text-blue-500 rounded hover:bg-blue-100 transition duration-300">Login</a>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button class="outline-none mobile-menu-button">
+                        <svg class="w-6 h-6 text-gray-500" 
+                            x-show="!showMenu"
+                            fill="none"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                        >
+                            <path d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div class="hidden mobile-menu">
+            <ul class="">
+                <li><a href="#healthy-food" class="block text-sm px-2 py-4 hover:bg-blue-500 hover:text-white transition duration-300">Healthy Food</a></li>
+                <li><a href="#yoga" class="block text-sm px-2 py-4 hover:bg-blue-500 hover:text-white transition duration-300">Yoga</a></li>
+                <li><a href="#meditation" class="block text-sm px-2 py-4 hover:bg-blue-500 hover:text-white transition duration-300">Meditation</a></li>
+                <li><a href="#exercise" class="block text-sm px-2 py-4 hover:bg-blue-500 hover:text-white transition duration-300">Exercise</a></li>
+                <li><a href="#lifestyle" class="block text-sm px-2 py-4 hover:bg-blue-500 hover:text-white transition duration-300">Lifestyle</a></li>
+                <li><a href="{% url 'home' %}" class="block text-sm px-2 py-4 hover:bg-blue-500 hover:text-white transition duration-300">Home</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-bg py-20">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 flex flex-col justify-center items-start p-8">
+                    <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Your Journey to Wellness Starts Here</h1>
+                    <p class="text-xl text-gray-700 mb-8">Discover the power of yoga, nutrition, and mindfulness for a healthier, happier you.</p>
+                    <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300 transform hover:scale-105">
+                        Explore Wellness
+                    </button>
+                </div>
+                <div class="md:w-1/2 p-8">
+                    <div class="bg-white rounded-lg shadow-xl p-8 text-center">
+                        <div class="icon-box bg-blue-100 mx-auto">
+                            <i class="fas fa-heartbeat text-blue-500 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Holistic Health</h3>
+                        <p class="text-gray-600">Mind, body and spirit wellness</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Healthy Food Section -->
+    <section id="healthy-food" class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Healthy Food</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Tip 1 -->
+                <div class="article-card bg-gray-50 rounded-lg overflow-hidden shadow-md transition duration-300 p-6">
+                    <div class="icon-box bg-green-100 mx-auto">
+                        <i class="fas fa-apple-alt text-green-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2 text-center">Superfoods to Include</h3>
+                    <p class="text-gray-600 mb-4">Discover the top 10 superfoods that pack a powerful nutritional punch and can easily be incorporated into your daily diet.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">Daily Tip</span>
+                        <a href="#" class="text-blue-500 hover:text-blue-700 font-medium">Read More</a>
+                    </div>
+                </div>
+                
+                <!-- Tip 2 -->
+                <div class="article-card bg-gray-50 rounded-lg overflow-hidden shadow-md transition duration-300 p-6">
+                    <div class="icon-box bg-yellow-100 mx-auto">
+                        <i class="fas fa-blender text-yellow-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2 text-center">Meal Prep Guide</h3>
+                    <p class="text-gray-600 mb-4">Learn how to prepare healthy meals for the week in just 2 hours with our simple meal prep strategies.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">Weekly Guide</span>
+                        <a href="#" class="text-blue-500 hover:text-blue-700 font-medium">Read More</a>
+                    </div>
+                </div>
+                
+                <!-- Tip 3 -->
+                <div class="article-card bg-gray-50 rounded-lg overflow-hidden shadow-md transition duration-300 p-6">
+                    <div class="icon-box bg-red-100 mx-auto">
+                        <i class="fas fa-utensils text-red-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2 text-center">Healthy Recipes</h3>
+                    <p class="text-gray-600 mb-4">Try our collection of delicious, nutrient-packed recipes that take 30 minutes or less to prepare.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">Recipe Collection</span>
+                        <a href="#" class="text-blue-500 hover:text-blue-700 font-medium">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Yoga Section -->
+    <section id="yoga" class="py-16" style="background-color: #c9e6f0;">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Yoga Practices</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Yoga 1 -->
+                <div class="article-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300 p-6">
+                    <div class="icon-box bg-purple-100 mx-auto">
+                        <i class="fas fa-spa text-purple-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2 text-center">Beginner Yoga</h3>
+                    <p class="text-gray-600 mb-4">Start your yoga journey with this gentle 30-day program designed for absolute beginners to build strength and flexibility.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">30-Day Challenge</span>
+                        <a href="#" class="text-blue-500 hover:text-blue-700 font-medium">Read More</a>
+                    </div>
+                </div>
+                
+                <!-- Yoga 2 -->
+                <div class="article-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300 p-6">
+                    <div class="icon-box bg-blue-100 mx-auto">
+                        <i class="fas fa-moon text-blue-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2 text-center">Morning Routine</h3>
+                    <p class="text-gray-600 mb-4">Wake up your body and mind with this 15-minute morning yoga sequence to energize your day.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">Daily Practice</span>
+                        <a href="#" class="text-blue-500 hover:text-blue-700 font-medium">Read More</a>
+                    </div>
+                </div>
+                
+                <!-- Yoga 3 -->
+                <div class="article-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300 p-6">
+                    <div class="icon-box bg-green-100 mx-auto">
+                        <i class="fas fa-bed text-green-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2 text-center">Evening Relaxation</h3>
+                    <p class="text-gray-600 mb-4">Wind down with these restorative yoga poses that promote relaxation and better sleep.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">Sleep Better</span>
+                        <a href="#" class="text-blue-500 hover:text-blue-700 font-medium">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Meditation Section -->
+    <section id="meditation" class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Meditation Techniques</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Meditation 1 -->
+                <div class="article-card bg-gray-50 rounded-lg overflow-hidden shadow-md transition duration-300 p-6">
+                    <div class="icon-box bg-indigo-100 mx-auto">
+                        <i class="fas fa-brain text-indigo-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2 text-center">Mindfulness Basics</h3>
+                    <p class="text-gray-600 mb-4">Discover how just 10 minutes of daily meditation can transform your mental health and reduce stress levels significantly.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">Beginner's Guide</span>
+                        <a href="#" class="text-blue-500 hover:text-blue-700 font-medium">Read More</a>
+                    </div>
+                </div>
+                
+                <!-- Meditation 2 -->
+                <div class="article-card bg-gray-50 rounded-lg overflow-hidden shadow-md transition duration-300 p-6">
+                    <div class="icon-box bg-teal-100 mx-auto">
+                        <i class="fas fa-wind text-teal-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2 text-center">Breathing Exercises</h3>
+                    <p class="text-gray-600 mb-4">Master these 5 breathing techniques to instantly calm your mind and reduce anxiety in stressful situations.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">Stress Relief</span>
+                        <a href="#" class="text-blue-500 hover:text-blue-700 font-medium">Read More</a>
+                    </div>
+                </div>
+                
+                <!-- Meditation 3 -->
+                <div class="article-card bg-gray-50 rounded-lg overflow-hidden shadow-md transition duration-300 p-6">
+                    <div class="icon-box bg-pink-100 mx-auto">
+                        <i class="fas fa-heart text-pink-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2 text-center">Loving-Kindness</h3>
+                    <p class="text-gray-600 mb-4">Practice this powerful meditation technique to cultivate compassion for yourself and others.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">Compassion Practice</span>
+                        <a href="#" class="text-blue-500 hover:text-blue-700 font-medium">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Exercise Section -->
+    <section id="exercise" class="py-16" style="background-color: #c9e6f0;">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Exercise Routines</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Exercise 1 -->
+                <div class="article-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300 p-6">
+                    <div class="icon-box bg-red-100 mx-auto">
+                        <i class="fas fa-running text-red-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2 text-center">Home Workouts</h3>
+                    <p class="text-gray-600 mb-4">No equipment needed! This full-body workout can be done anywhere and takes just 20 minutes.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">No Equipment</span>
+                        <a href="#" class="text-blue-500 hover:text-blue-700 font-medium">Read More</a>
+                    </div>
+                </div>
+                
+                <!-- Exercise 2 -->
+                <div class="article-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300 p-6">
+                    <div class="icon-box bg-orange-100 mx-auto">
+                        <i class="fas fa-dumbbell text-orange-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2 text-center">Strength Training</h3>
+                    <p class="text-gray-600 mb-4">Build lean muscle and boost metabolism with these essential strength exercises for all fitness levels.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">Muscle Building</span>
+                        <a href="#" class="text-blue-500 hover:text-blue-700 font-medium">Read More</a>
+                    </div>
+                </div>
+                
+                <!-- Exercise 3 -->
+                <div class="article-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300 p-6">
+                    <div class="icon-box bg-blue-100 mx-auto">
+                        <i class="fas fa-heartbeat text-blue-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2 text-center">Cardio Options</h3>
+                    <p class="text-gray-600 mb-4">Discover fun cardio alternatives to running that will keep your heart healthy and workouts interesting.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">Heart Health</span>
+                        <a href="#" class="text-blue-500 hover:text-blue-700 font-medium">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lifestyle Section -->
+    <section id="lifestyle" class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Lifestyle Tips</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Lifestyle 1 -->
+                <div class="article-card bg-gray-50 rounded-lg overflow-hidden shadow-md transition duration-300 p-6">
+                    <div class="icon-box bg-green-100 mx-auto">
+                        <i class="fas fa-moon text-green-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2 text-center">Sleep Better</h3>
+                    <p class="text-gray-600 mb-4">Science-backed tips to improve your sleep quality and wake up refreshed every morning.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">Sleep Hygiene</span>
+                        <a href="#" class="text-blue-500 hover:text-blue-700 font-medium">Read More</a>
+                    </div>
+                </div>
+                
+                <!-- Lifestyle 2 -->
+                <div class="article-card bg-gray-50 rounded-lg overflow-hidden shadow-md transition duration-300 p-6">
+                    <div class="icon-box bg-yellow-100 mx-auto">
+                        <i class="fas fa-stress text-yellow-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2 text-center">Stress Management</h3>
+                    <p class="text-gray-600 mb-4">Effective strategies to reduce daily stress and build resilience against life's challenges.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">Mental Wellness</span>
+                        <a href="#" class="text-blue-500 hover:text-blue-700 font-medium">Read More</a>
+                    </div>
+                </div>
+                
+                <!-- Lifestyle 3 -->
+                <div class="article-card bg-gray-50 rounded-lg overflow-hidden shadow-md transition duration-300 p-6">
+                    <div class="icon-box bg-purple-100 mx-auto">
+                        <i class="fas fa-users text-purple-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2 text-center">Healthy Relationships</h3>
+                    <p class="text-gray-600 mb-4">How nurturing positive relationships contributes to your overall health and longevity.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">Social Wellness</span>
+                        <a href="#" class="text-blue-500 hover:text-blue-700 font-medium">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="py-16" style="background-color: #c9e6f0;">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Join Our Wellness Community</h2>
+            <p class="text-xl text-gray-700 mb-8 max-w-2xl mx-auto">
+                Subscribe to our newsletter and receive weekly health tips, exclusive content, and special offers.
+            </p>
+            <div class="max-w-md mx-auto">
+                <form class="flex flex-col sm:flex-row gap-4">
+                    <input type="email" placeholder="Your email address" class="flex-grow px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg shadow transition duration-300">
+                        Subscribe
+                    </button>
+                </form>
+                <p class="text-sm text-gray-600 mt-3">
+                    We respect your privacy. Unsubscribe at any time.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <span class="font-semibold text-2xl">Health Yog</span>
+                    <p class="text-gray-400 mt-2">Your trusted health and wellness resource.</p>
+                </div>
+                <div class="flex flex-col md:flex-row md:space-x-8 space-y-4 md:space-y-0">
+                    <div>
+                        <h3 class="font-semibold text-lg mb-2">Categories</h3>
+                        <ul class="space-y-2">
+                            <li><a href="#healthy-food" class="text-gray-400 hover:text-white transition duration-300">Healthy Food</a></li>
+                            <li><a href="#yoga" class="text-gray-400 hover:text-white transition duration-300">Yoga</a></li>
+                            <li><a href="#meditation" class="text-gray-400 hover:text-white transition duration-300">Meditation</a></li>
+                            <li><a href="#exercise" class="text-gray-400 hover:text-white transition duration-300">Exercise</a></li>
+                            <li><a href="#lifestyle" class="text-gray-400 hover:text-white transition duration-300">Lifestyle</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-lg mb-2">Resources</h3>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Guides</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Recipes</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Workouts</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Meditations</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-lg mb-2">Legal</h3>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Privacy Policy</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Terms of Service</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 Health Yog. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const btn = document.querySelector(".mobile-menu-button");
+        const menu = document.querySelector(".mobile-menu");
+
+        btn.addEventListener("click", () => {
+            menu.classList.toggle("hidden");
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

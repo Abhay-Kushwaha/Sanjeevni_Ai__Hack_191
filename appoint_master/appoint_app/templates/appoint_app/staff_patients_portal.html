@@ -1,0 +1,236 @@
+{% if request.user.is_authenticated %}
+{% load tz %}
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Sanjeevni Ai | @👨🏻‍🦰Patient Dashboard</title>
+
+   <!-- Material Symbols/Icons CDN -->
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp" />
+
+   <!-- Custom CSS file  -->
+   <link rel="stylesheet" href="{% static 'appoint_app/css/portal_master.css' %}">
+
+
+</head>
+<body style="background: linear-gradient(-202deg,rgb(15, 109, 128) 0%,rgb(30, 82, 135) 15%, #e5e8eb 46%, #F3FFFD 72%,rgb(30, 103, 110) 81%,rgb(37, 93, 125) 100%);" data-theme="light">
+   <div style="background: linear-gradient(-202deg,rgb(15, 109, 128) 0%,rgb(30, 82, 135) 15%, #e5e8eb 46%, #F3FFFD 72%,rgb(30, 103, 110) 81%,rgb(37, 93, 125) 100%);" class="container">
+      <!--Start of aside-->
+      <aside style="background: linear-gradient(-202deg,rgb(15, 109, 128) 0%,rgb(30, 82, 135) 15%, #e5e8eb 46%, #F3FFFD 72%,rgb(30, 103, 110) 81%,rgb(37, 93, 125) 100%);">
+         <div style="" class="top">
+            <div class="logo">
+               <!--Javascript loads logo based on theme-->
+            </div>
+            <div class="close" id="close-btn">
+               <span class="material-symbols-sharp">close</span>
+            </div>
+         </div>
+   
+         <div class="sidebar" style="height: 100%; margin: 0; padding: 0; overflow-x: hidden; font-family: 'Poppins', sans-serif; background: linear-gradient(-202deg,rgb(49, 120, 135) 0%, #d5e2ef 15%, #e5e8eb 46%, #F3FFFD 72%, #B6CDCF 81%,rgb(67, 87, 98) 100%); background-size: cover; background-repeat: no-repeat; background-attachment: fixed;" class="sidebar">
+            <a href="#" class="active">
+               <span class="material-symbols-sharp">grid_view</span>
+               <h3>Dashboard</h3>
+            </a>
+            <a href="{% url 'create-appointment-patient' %}">
+               <span class="material-symbols-sharp">add</span>
+               <h3>New Appointment</h3>
+            </a>         
+            <a href="{% url 'view-appointments'%}">
+               <span class="material-symbols-sharp">calendar_clock</span>
+               <h3>View your Appointments</h3>
+            </a>           
+            <a href="{% url 'view-appointments-manage' %}">
+               <span class="material-symbols-sharp">book_online</span>
+               <h3>Manage your Appointments</h3>
+            </a>
+            <a href="{% url 'all-payments' %}">
+               <span class="material-symbols-sharp">paid</span>
+               <h3>Your Payments</h3>
+            </a>
+            <a href="{% url 'view-appointments-manage' %}">
+               <span class="material-symbols-sharp">videocam</span>
+               <h3>Video call Appointment</h3>
+            </a> 
+            <a href="{% url 'list_prescription' %}">
+               <span class="material-symbols-sharp">videocam</span>
+               <h3>Prescriptions</h3>
+            </a> 
+            <a href="{% url 'logout' %}">
+               <span class="material-symbols-sharp">logout</span>
+               <h3>logout</h3>
+           </a>
+                       
+            <a href="{% url 'delete_account_confirmation' %}">
+               <span class="material-symbols-sharp">warning</span>
+               <h3>Delete my Account</h3>
+            </a>
+         </div>
+      </aside>
+      <!----End of aside-->
+
+      <!--Start of main-->
+      <main style="background: linear-gradient(-202deg,rgb(58, 140, 157) 0%, #d5e2ef 15%, #e5e8eb 46%, #F3FFFD 72%, #B6CDCF 81%, #025484 100%);">
+         
+         <div class="insights">
+            <!--Start of booked appointments-->
+            <div class="booked" style="background: linear-gradient(-202deg,rgb(15, 109, 128) 0%,rgb(30, 82, 135) 15%, #e5e8eb 46%, #F3FFFD 72%,rgb(30, 103, 110) 81%,rgb(37, 93, 125) 100%);"class="booked">
+               <span class="material-symbols-sharp">book_online</span>
+               <div class="middle">
+                  <div class="left">
+                     <h3>Booked Appointments</h3>
+                     <h1>{{ total_appointments }}</h1>
+                  </div>
+                  <div class="progress">
+                     <svg class="progress-svg">
+                        <circle cx="38" cy="38" r="36"></circle>
+                     </svg>
+                     <div class="number">
+                        <p class="available-percentage">{{ appointment_percentage }}%</p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!--End of booked appointments-->
+
+            <!--Start of approved appointments-->
+            <div style="background: linear-gradient(-202deg,rgb(15, 109, 128) 0%,rgb(30, 82, 135) 15%, #e5e8eb 46%, #F3FFFD 72%,rgb(30, 103, 110) 81%,rgb(37, 93, 125) 100%);"class="booked" class="approved">
+               <span class="material-symbols-sharp">calendar_clock</span>
+               <div class="middle">
+                  <div class="left">
+                     <h3>Scheduled Appointments</h3>
+                     <h1>{{ scheduled_appointments }}</h1>
+                  </div>
+                  <div class="progress">
+                     <svg class="progress-svg">
+                        <circle cx="38" cy="38" r="36"></circle>
+                     </svg>
+                     <div class="number">
+                        <p class="available-percentage">{{ scheduled_percentage }}%</p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!---End of approved appointments-->
+
+            <!--Start of approved appointments-->
+            <div style="background: linear-gradient(-202deg,rgb(15, 109, 128) 0%,rgb(30, 82, 135) 15%, #e5e8eb 46%, #F3FFFD 72%,rgb(30, 103, 110) 81%,rgb(37, 93, 125) 100%);"class="booked" class="booked">
+               <span class="material-symbols-sharp">cancel</span>
+               <div class="middle">
+                  <div class="left">
+                     <h3>Failed Appointments</h3>
+                     <h1>{{ failed_appointments }}</h1>
+                  </div>
+                  <div class="progress">
+                     <svg class="progress-svg">
+                        <circle cx="38" cy="38" r="36"></circle>
+                     </svg>
+                     <div class="number">
+                        <p class="available-percentage">{{ failed_percentage }}%</p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!---End of approved appointments-->
+
+            <!--Start of approved appointments-->
+            <div style="background: linear-gradient(-202deg,rgb(15, 109, 128) 0%,rgb(30, 82, 135) 15%, #e5e8eb 46%, #F3FFFD 72%,rgb(30, 103, 110) 81%,rgb(37, 93, 125) 100%);"class="booked" class="booked">
+               <span class="material-symbols-sharp">event_busy</span>
+               <div class="middle">
+                  <div class="left">
+                     <h3>Canceled Appointments</h3>
+                     <h1>{{ canceled_appointments }}</h1>
+                  </div>
+                  <div class="progress">
+                     <svg class="progress-svg">
+                        <circle cx="38" cy="38" r="36"></circle>
+                     </svg>
+                     <div class="number">
+                        <p class="available-percentage">{{ canceled_percentage }}%</p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!---End of approved appointments-->
+
+            <!--Start of payments-->
+            <div style="background: linear-gradient(-202deg,rgb(15, 109, 128) 0%,rgb(30, 82, 135) 15%, #e5e8eb 46%, #F3FFFD 72%,rgb(30, 103, 110) 81%,rgb(37, 93, 125) 100%);"class="booked" class="paid">
+               <span class="material-symbols-sharp">order_approve</span>
+               <div class="middle">
+                  <div class="left">
+                     <h3>Completed Appointments</h3>
+                     <h1>{{ completed_appointments }}</h1>
+                  </div>
+                  <div class="progress">
+                     <svg class="progress-svg">
+                        <circle cx="38" cy="38" r="36"></circle>
+                     </svg>
+                     <div class="number">
+                        <p class="available-percentage">{{ completed_percentage }}%</p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!--End of payments-->
+
+            <!--Start of payments-->
+            <div style="background: linear-gradient(-202deg,rgb(15, 109, 128) 0%,rgb(30, 82, 135) 15%, #e5e8eb 46%, #F3FFFD 72%,rgb(30, 103, 110) 81%,rgb(37, 93, 125) 100%);"class="booked" class="paid">
+               <span class="material-symbols-sharp">order_approve</span>
+               <div class="middle">
+                  <div class="left">
+                     <h3>Closed Appointments</h3>
+                     <h1>{{ closed_appointments }}</h1>
+                  </div>
+                  <div class="progress">
+                     <svg class="progress-svg">
+                        <circle cx="38" cy="38" r="36"></circle>
+                     </svg>
+                     <div class="number">
+                        <p class="available-percentage">{{ closed_percentage }}%</p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!--End of payments-->
+         </div>
+         <!--End of insights-->
+         
+      </main>
+      
+ 
+      <div class="mt-5">
+         <div class="mt-5"> 
+               {% if user.profile_photo %}
+               <img  class="mt-5" src="{{user.profile_photo.url}}" style="border-radius:50%" >
+               {% else %}
+               <img src="{% static 'appoint_app/images/profile.png' %}" style="border-radius:50%">
+               {% endif %}
+            </div>
+            <div class="text-center">
+               <a class="mt-5"  href="{% url 'update-patient-profile' request.user.username %}">
+               <h1 class="text-center" >Hey, <b>{{request.user.username}}</b></h1>
+                  <h3 style="top-0 mt-0" >Patient Dashboard</h3></a>
+
+               {% comment %} <small class="text-muted">👦🏻 patient<sup>💥</sup></small> {% endcomment %}
+            </div>
+      </div>
+      <!--End of main-->
+
+      <div class="right">
+         <div class="top">
+            <button class="menu-btn" id="menu-btn">
+               <span class="material-symbols-sharp">menu</span>
+            </button>
+
+   </div>
+
+   <script src="{% static 'appoint_app/js/master_scripts.js' %}"></script>
+   <script src="{% static 'appoint_app/js/my_theme.js' %}"></script>
+   <script src="{% static 'appoint_app/js/progress_bar.js' %}"></script>
+   <script src="{% static 'appoint_app/js/date_time.js' %}"></script>
+</body>
+</html>
+{% endif %}

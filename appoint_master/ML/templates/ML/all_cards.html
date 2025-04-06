@@ -1,0 +1,120 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Diseases</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" />
+
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(-202deg, #eff9fb 0%, #d5e2ef 15%, #e5e8eb 46%, #F3FFFD 72%, #B6CDCF 81%, #025484 100%);
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .navbar-brand img {
+            height: 60px;
+            width: 55px;
+        }
+
+        .container-heading {
+            margin-top: 30px;
+            font-weight: 700;
+            color: #0e1010;
+            text-align: center;
+        }
+
+        .card {
+            margin: 20px 0;
+            border-radius: 15px;
+        }
+
+        .btn-primary {
+            background-color: #006073;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #004d5c;
+        }
+
+        .row>div {
+            display: flex;
+        }
+
+        .card-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-margin {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #006073;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="{% static 'ML/logo.png' %}" alt="Logo" />
+            </a>
+            <div class="d-flex ms-auto">
+                <ul class="navbar-nav d-flex flex-row">
+                    <li class="nav-item mx-2">
+                        <a class="nav-link" href="{% url 'home' %}">Dashboard</a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link" href="{% url 'all_cards' %}">All Diseases</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Heading -->
+    <h2 class="container-heading">Health Prediction Portal</h2>
+    <p class="text-center">Get quick predictions for various diseases based on your inputs.</p>
+
+    <!-- Cards Section -->
+    <div class="container pb-5">
+        <div class="row justify-content-center">
+
+            {% comment %} <a href="{% url 'alzheimer' %}">alzheimer</a>
+            <a href="{% url 'brain' %}">brain</a>
+            <a href="{% url 'diabetes' %}">diabetes</a>
+            <a href="{% url 'general' %}">general</a>
+            <a href="{% url 'heart' %}">heart</a>
+            <a href="{% url 'kidney' %}">kidney</a> {% endcomment %}
+            
+            {% for card in cards %}
+                <div class="col-md-4 d-flex align-items-stretch card-margin">
+                    <div class="card shadow w-100 h-100">
+                        <div class="card-body text-center d-flex flex-column justify-content-between">
+                            <div>
+                                <h4 class="card-title">{{ card.title }}</h4>
+                                <p class="card-text">{{ card.desc }}</p>
+                            </div>
+                            <a href="{% url card.url %}" class="btn btn-primary mt-3">Check Health</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+
+</html>
