@@ -27,6 +27,21 @@
     - Auto-booking and delivery of prescribed medicines
 
     ---
+    
+    ## 🛠️ Tech Stack
+
+    | Component           |              Technology             |
+    |---------------------|-------------------------------------|
+    | Backend             | Python Django                       |
+    | ML/DL Models        | Scikit-learn, TensorFlow, OpenCV    |
+    | Text-to-Speech      | gTTS (Google Text-to-Speech)        |
+    | Chat & Video Calls  | Jitsi                               |
+    | Frontend            | HTML, CSS, JS, BootStrap, Tailwind  |
+    | Payments            | PayStack Payment Gateway            |
+    | Email Authentication| SMTP                                |
+    | Database            | SQL               |
+    |---------------------|-------------------------------------|
+     --------
 
     ## 🔁 Workflow
 
@@ -153,20 +168,5 @@
     - Entire health journey covered within one single site.
 
     ---
-
-    ## 🛠️ Tech Stack
-
-    | Component           |              Technology             |
-    |---------------------|-------------------------------------|
-    | Backend             | Python Django                       |
-    | ML/DL Models        | Scikit-learn, TensorFlow, OpenCV    |
-    | Text-to-Speech      | gTTS (Google Text-to-Speech)        |
-    | Video Calls         | Jitsi                               |
-    | Frontend            | HTML, CSS, JavaScript, Tailwind     |
-    | Payments            | PayStack Payment Gateway            |
-    | Email Authentication| SMTP                                |
-    | Payments            | PayStack                            |
-    | Database            | SQL (configurable)                  |
-    |---------------------|-------------------------------------|
 
     ---
