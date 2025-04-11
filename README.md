@@ -29,7 +29,7 @@
     ---
     
     ## 🛠️ Tech Stack
-
+    |---------------------|-------------------------------------|
     | Component           |              Technology             |
     |---------------------|-------------------------------------|
     | Backend             | Python Django                       |
@@ -39,9 +39,9 @@
     | Frontend            | HTML, CSS, JS, BootStrap, Tailwind  |
     | Payments            | PayStack Payment Gateway            |
     | Email Authentication| SMTP                                |
-    | Database            | SQL               |
+    | Database            | SQL                                 |
     |---------------------|-------------------------------------|
-     --------
+     ---
 
     ## 🔁 Workflow
 
