@@ -1,5 +1,5 @@
 # 🧠 Sanjeevni AI, AI-Powered Health Prediction & Consultation Platform
-An all-in-one AI-powered web platform that helps patients **predict diseases**, **receive tailored medical advice**, **book medicines**, and **consult doctors**—all from the comfort of their home.
+An all-in-one AI-powered web application that helps patients **predict diseases**, **receive tailored medical advice**, **book medicines**, and **consult doctors**—all from the comfort of their home.
 
 ## 🩺 Problem Statement
 Patients often need to jump across multiple platforms for:
@@ -15,15 +15,17 @@ We developed a centralized AI-powered healthcare platform that streamlines the e
 > Predict ➝ Advise ➝ Consult ➝ Cure ➝ Deliver
 
 - Symptom-based and MRI-based disease prediction using Machine Learning and Deep Learning
-- Detailed medical advice (precautions, medication, diet)
-- Direct consultation with certified doctors via video calls
-- Auto-booking and delivery of prescribed medicines
+- Detailed medical advice (precautions, medication, and dietary suggestions)
+- Interactive nurse avatar explanation for guiding patients through treatment plans, medication usage,etc
+- Real-time video consultations with certified doctors and facilitated digital prescriptions
+- Personal dashboards for patients, doctors, and admins to streamline interactions & data management
+- Multilingual feature for inclusive communication and accessibility across diverse patient populations
     
 ## 🛠️ Tech Stack
 | Component           |              Technology             |
 |---------------------|-------------------------------------|
 | Backend             | Python Django                       |
-| ML/DL Models        | Scikit-learn, TensorFlow, OpenCV    |
+| ML/DL Models        | Scikit-learn, TensorFlow            |
 | Text-to-Speech      | gTTS (Google Text-to-Speech)        |
 | Chat & Video Calls  | Jitsi                               |
 | Frontend            | HTML, CSS, JS, BootStrap, Tailwind  |
